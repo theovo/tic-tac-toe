@@ -1,0 +1,19 @@
+/* ALTERNATE BOX MODEL */
+
+* {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+
+    color: #4e607931;
+    /* color: #4e5e7999; */
+    /* color: #4e557970; */
+    /* color: #9BE3FF10; */
+}

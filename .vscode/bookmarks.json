@@ -1,0 +1,64 @@
+{
+	"files": [
+		{
+			"path": "script.js",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 28,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 114,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 157,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "script-connect-four.js",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 33,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 101,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 151,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "style.css",
+			"bookmarks": [
+				{
+					"line": 17,
+					"column": 9,
+					"label": ""
+				}
+			]
+		}
+	]
+}
