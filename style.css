@@ -11,9 +11,50 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    color: #4e607931;
-    /* color: #4e5e7999; */
-    /* color: #4e557970; */
-    /* color: #9BE3FF10; */
+
+
+table {
+    flex-grow: 1;
+    gap: 16px;
+    padding: 8px;
+}
+
+
+
+tbody {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+
+    width: min(100%, 900px);
+    aspect-ratio: 1;
+}
+
+thead {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+
+
+tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+
+tr td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+thead td {
+    gap: 16px;
 }

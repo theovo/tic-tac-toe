@@ -5,21 +5,16 @@
 			"bookmarks": [
 				{
 					"line": 0,
-					"column": 13,
-					"label": ""
-				},
-				{
-					"line": 28,
 					"column": 0,
 					"label": ""
 				},
 				{
-					"line": 114,
+					"line": 27,
 					"column": 0,
 					"label": ""
 				},
 				{
-					"line": 157,
+					"line": 166,
 					"column": 0,
 					"label": ""
 				}
@@ -51,11 +46,46 @@
 			]
 		},
 		{
+			"path": "script-console.js",
+			"bookmarks": [
+				{
+					"line": 25,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 123,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 162,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
 			"path": "style.css",
 			"bookmarks": [
 				{
-					"line": 17,
-					"column": 9,
+					"line": 18,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 26,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 42,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 49,
+					"column": 0,
 					"label": ""
 				}
 			]

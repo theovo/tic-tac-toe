@@ -1,0 +1,99 @@
+
+
+GameBoard
+        // create an empty board
+
+        - create an empty board
+        getBoard
+                return the board
+        dropToken (chosenCell, activePlayerToken)
+                map the array
+                        if the array element equals chosenCell
+                        assign value as activePlayerToken
+        printBoard
+                log the board to the console
+        - return {getBoard, dropToken, printBoard}
+
+
+
+GameController
+        // create the players
+        // initialize the first player as the activePlayer of the game
+        // log to the console the board and activePlayer message
+
+        - run GameBoard
+        - create an array of players
+                {name: 'Player X', token: 'X'}
+                {name: 'Player O', token: 'O'}
+        - initialize activePlayer
+        switchPlayer
+                switch value of activePlayer
+        getActivePlayer
+                return activePlayer
+        getWinner
+                if activePlayer has three tokens in a row
+                        return true
+                else
+                        return false
+        isBoardFilled
+                if board is filled
+                        return true
+                else
+                        return false
+        playRound (chosenCell)
+                run dropToken (chosenCell, activePlayer.token)
+                run printBoard
+                if getWinner is true
+                        log to the console the activePlayer's win message
+                else
+                        if isBoardFilled is true
+                                log to the console no winner message
+                        else
+                                run switchPlayer
+                                log to the console activePlayer's turn message
+
+        // first time, print board to the console with a message
+        - run printBoard
+        - log to the console activePlayer's turn message
+        - return {getBoardNow: board.getBoard, getActivePlayer, playRound, getWinner, isBoardFilled}
+
+
+
+ScreenController
+        - run GameController
+        getUserInput
+                prompt for user input with getActivePlayer's turn message
+                save return value as chosenCell
+                // escape or cancel to end the prompt
+                if chosenCell is false
+                        return chosenCell
+                // player's choice is between 1 and 9
+                if chosenCell is between 1 and 9
+                        // player's choice is available in the board
+                        if getBoardNow includes chosenCell
+                                run playRound (chosenCell)
+                                // if there's a winner, confirm to restart the game
+                                if getWinner is true
+                                        confirm to restart the game message
+                                        if true
+                                                run ScreenController
+                                // if there's no winner
+                                else
+                                        // if the board is filled, confirm to restart the game
+                                        if isBoardFilled is true
+                                                confirm to restart the game message
+                                                        if true
+                                                                run ScreenController
+                                        // if the board is not filled, start the next round
+                                        run getUserInput
+                        else
+                                // invalid input, prompt again
+                                run getUserInput
+                else
+                        // invalid input, prompt again
+                        run getUserInput
+        - run getUserInput
+
+
+
+- run ScreenController

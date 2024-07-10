@@ -1,5 +1,3 @@
-
-
 function GameBoard() {
     let board = [
         '0',
@@ -29,11 +27,14 @@ function GameBoard() {
 
 function GameController() {
     const board = GameBoard();
+
     const players = [
         { name: 'Player X', token: 'X' },
         { name: 'Player O', token: 'O' }
     ];
+
     let activePlayer = players[0];
+
     function switchPlayer() {
         if (activePlayer === players[0]) {
             activePlayer = players[1];
@@ -51,24 +52,31 @@ function GameController() {
             ((board.getBoard()[1] === activePlayer.token) &&
                 (board.getBoard()[2] === activePlayer.token) &&
                 (board.getBoard()[3] === activePlayer.token)) ||
+
             ((board.getBoard()[4] === activePlayer.token) &&
                 (board.getBoard()[5] === activePlayer.token) &&
                 (board.getBoard()[6] === activePlayer.token)) ||
+
             ((board.getBoard()[7] === activePlayer.token) &&
                 (board.getBoard()[8] === activePlayer.token) &&
                 (board.getBoard()[9] === activePlayer.token)) ||
+
             ((board.getBoard()[1] === activePlayer.token) &&
                 (board.getBoard()[4] === activePlayer.token) &&
                 (board.getBoard()[7] === activePlayer.token)) ||
+
             ((board.getBoard()[2] === activePlayer.token) &&
                 (board.getBoard()[5] === activePlayer.token) &&
                 (board.getBoard()[8] === activePlayer.token)) ||
+
             ((board.getBoard()[3] === activePlayer.token) &&
                 (board.getBoard()[6] === activePlayer.token) &&
                 (board.getBoard()[9] === activePlayer.token)) ||
+
             ((board.getBoard()[1] === activePlayer.token) &&
                 (board.getBoard()[5] === activePlayer.token) &&
                 (board.getBoard()[9] === activePlayer.token)) ||
+
             ((board.getBoard()[3] === activePlayer.token) &&
                 (board.getBoard()[5] === activePlayer.token) &&
                 (board.getBoard()[7] === activePlayer.token))
@@ -105,7 +113,9 @@ function GameController() {
             }
         }
     }
-    board.printBoard(); // first time, print board to the console with a message
+
+    // first time, print board to the console with a message
+    board.printBoard();
     console.log(activePlayer.name + "'s Turn");
 
     return { getBoardNow: board.getBoard, getActivePlayer, playRound, getWinner, isBoardFilled };
@@ -115,21 +125,30 @@ function GameController() {
 
 function screenController() {
     const game = GameController();
-    const tbody = document.querySelector('tbody');
-    const cells = Array.from(tbody.querySelectorAll('td'));
-    const thead = document.querySelector('thead');
-    const p = thead.querySelector('td');
-    const button = document.createElement('button');
-    button.textContent = 'Restart';
 
-    function getUserInput(e) {
-        const chosenCell = e.target.className;
-        console.log(chosenCell);
+    function getUserInput() {
+        const chosenCell = prompt(game.getActivePlayer().name + "'s Turn");
+        if (!chosenCell) { // escape or cancel to end the prompt
+            return chosenCell;
+        }
         if ((chosenCell >= 1) && (chosenCell <= 9)) { // if player's choice is between 1 and 9
             if (game.getBoardNow().includes(chosenCell)) { // if player's choice is available on the board
-
                 game.playRound(chosenCell); // play the round, drop the token, print the latest board to the console with a message
-                updateScreen();
+                if (game.getWinner()) { // if there's a winner, confirm to restart the game
+                    const confirmation = confirm('Restart the Game?');
+                    if (confirmation) {
+                        screenController();
+                    }
+                } else { // if there's no winner
+                    if (game.isBoardFilled()) { // if the board filled, confirm to restart the game
+                        const confirmation = confirm('There is No Winner. Restart the Game?');
+                        if (confirmation) {
+                            screenController();
+                        }
+                    } else { // if the board is not filled, start the next round
+                        getUserInput();
+                    }
+                }
             } else { // invalid input, ask again
                 getUserInput();
             }
@@ -138,30 +157,7 @@ function screenController() {
         }
     }
 
-    function updateScreen() {
-        let i = 1;
-        for (cell of cells) {
-            cell.textContent = game.getBoardNow()[i];
-            i++;
-        }
-
-
-        if (game.getWinner()) { // if there's a winner, confirm to restart the game
-            p.textContent = game.getActivePlayer().name + ' is the Winner! Restart the Game?';
-        } else { // if there's no winner
-            p.textContent = 'There is No Winner';
-            if (game.isBoardFilled()) { // if the board filled, confirm to restart the game
-                p.textContent = game.getActivePlayer().name + ' is the Winner! Restart the Game?';
-            } else { // if the board is not filled, start the next round
-                p.textContent = game.getActivePlayer().name + '\'s Turn';
-            }
-        }
-        p.append(button);
-    }
-
-    button.addEventListener('click', screenController);
-    tbody.addEventListener('click', getUserInput);
-    updateScreen();
+    getUserInput();
 };
 
 
